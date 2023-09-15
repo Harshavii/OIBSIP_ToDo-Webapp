@@ -7,56 +7,58 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Pacifico&amp;family=Phudu:wght@700&amp;display=swap" rel="stylesheet">
- 
+    
 </head>
 <body>
-    <div class="container-fluid mt-4">
-        <div class="container-md">
-            <h1 class="text-center input">To Do List</h1>
-            <form method="POST" action="/add_task" class="mb-3">
-                <div class="input-group">
-                    <input type="text" name="task" class="form-control" placeholder="Add a task...">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </div>
-            </form>
+        <div class="container-fluid background-container">
+            <img src="static\css\img\todobg.jpg" alt="bg">
+                <div class="container-md overlap-container">
+                    <h1 class="text-center input">To Do List</h1>
+                    <form method="POST" action="/add_task" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="task" class="form-control" placeholder="Add a task...">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </form>
         </div>
-        
-    </div>
-    <div class="container mt-4">
-        {% if tasks %}
-            <table class="table table-bordered table-hover" style="min-width: 70%;">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Task</th>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for task, timestamp in tasks %}
+            
+        </div>
+        <div class="container overlap-container2">
+            {% if tasks %}
+                <table class="table table-bordered table-hover" style="min-width: 70%;">
+                    <thead class="table-dark">
                         <tr>
-                            <td>{{ task }}</td>
-                            <td>{{ timestamp.strftime('%b %d, %Y') }}</td>
-                            <td>{{ timestamp.strftime('%I:%M %p') }}</td>
-                            <td>
-                                <a href="" class="btn btn-success btn-sm">Pending</a>
-                            </td>
-                            <td>
-                                <a href="/delete_task/{{ loop.index0 }}" class="btn btn-danger btn-sm">Delete</a>
-                            </td>
+                            <th>Task</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-        <div class="col-md-10 offset-md-1"> 
-            <h1 class="text-center end input">Great, You've got no task today!</h1>
+                    </thead>
+                    <tbody>
+                        {% for task, timestamp in tasks %}
+                            <tr>
+                                <td>{{ task }}</td>
+                                <td>{{ timestamp.strftime('%b %d, %Y') }}</td>
+                                <td>{{ timestamp.strftime('%I:%M %p') }}</td>
+                                <td>
+                                    <a href="" class="btn btn-success btn-sm">Pending</a>
+                                </td>
+                                <td>
+                                    <a href="/delete_task/{{ loop.index0 }}" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+            <div class="col-md-10 offset-md-1"> 
+                <h1 class="text-center end input">Great, You've got no task today!</h1>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
+    
 </body>
 </html>
